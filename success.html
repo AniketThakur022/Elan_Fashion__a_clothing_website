@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank you — ÉLAN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/checkout.css" />
+  <style>
+    .success {
+      min-height: 100vh;
+      padding: 130px var(--gutter) 80px;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .success__seal {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: var(--gold);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 36px;
+      font-family: var(--font-display);
+      font-size: 32px;
+    }
+    .success h1 {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 8vw, 120px);
+      font-weight: 300;
+      letter-spacing: -0.025em;
+      margin-bottom: 18px;
+      font-variation-settings: 'opsz' 144, 'SOFT' 60;
+    }
+    .success__sub {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(18px, 2vw, 24px);
+      color: var(--grey-2);
+      margin-bottom: 56px;
+      font-weight: 300;
+    }
+    .success__id {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 56px;
+    }
+    .success__details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      text-align: left;
+      padding: 32px;
+      border: 1px solid var(--rule-dark);
+      margin-bottom: 56px;
+    }
+    @media (max-width: 600px) { .success__details { grid-template-columns: 1fr; } }
+    .success__details h3 {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-bottom: 10px;
+    }
+    .success__details p { font-size: 14px; line-height: 1.5; }
+    .success__items {
+      text-align: left;
+      max-width: 720px;
+      margin: 0 auto 56px;
+    }
+    .success-item {
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      gap: 18px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--rule-dark);
+      align-items: center;
+    }
+    .success-item__img {
+      aspect-ratio: 3/4;
+      background-size: cover;
+      background-position: center;
+    }
+    .success-item__name { font-family: var(--font-display); font-size: 18px; }
+    .success-item__meta { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--grey); margin-top: 4px; }
+    .success-item__price { font-family: var(--font-mono); font-size: 13px; }
+    .success__cta { display: flex; gap: 12px; justify-content: center; }
+    @media (max-width: 500px) { .success__cta { flex-direction: column; } }
+    .success__totals {
+      max-width: 320px;
+      margin: 0 auto 56px;
+      text-align: left;
+    }
+    .success__totals .summary-row { padding: 4px 0; }
+  </style>
+</head>
+<body class="theme-light">
+
+  <nav class="nav-checkout">
+    <a href="index.html" class="nav-checkout__brand">ÉLAN</a>
+    <div class="nav-checkout__steps">
+      <span class="nav-checkout__step is-active"><i>✓</i> Order placed</span>
+    </div>
+    <a href="shop.html" class="nav-checkout__back">Continue Shopping →</a>
+  </nav>
+
+  <main class="success" id="success"></main>
+
+  <script src="js/data.js"></script>
+  <script>
+    (function () {
+      const order = JSON.parse(localStorage.getItem('elan_last_order') || 'null');
+      const root = document.getElementById('success');
+      if (!order) {
+        root.innerHTML = `
+          <div class="success__seal">É</div>
+          <h1>No order found.</h1>
+          <p class="success__sub">Looks like you haven't placed an order yet.</p>
+          <a href="shop.html" class="btn btn--ink"><span>Discover the Collection</span></a>`;
+        return;
+      }
+      root.innerHTML = `
+        <div class="success__seal">É</div>
+        <p class="eyebrow" style="margin-bottom: 20px; color: var(--gold);">Order Confirmed</p>
+        <h1>Thank you, ${order.name.split(' ')[0]}.</h1>
+        <p class="success__sub">Your pieces are with the atelier. A confirmation has been sent to ${order.email}.</p>
+        <div class="success__id">Order Reference · ${order.id}</div>
+
+        <div class="success__details">
+          <div>
+            <h3>Shipping To</h3>
+            <p>${order.name}<br>${order.address}<br>${order.city}, ${order.zip}<br>${order.country}</p>
+          </div>
+          <div>
+            <h3>Method</h3>
+            <p>${order.shipping === 'standard' ? 'Standard · 5–7 business days' : order.shipping === 'express' ? 'Express · 2–3 business days' : 'Atelier Pickup · Paris'}<br><br>
+            <span style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--grey);">Payment · ${order.payment.toUpperCase()}</span></p>
+          </div>
+        </div>
+
+        <div class="success__items">
+          ${order.items.map(it => {
+            const p = window.PRODUCTS.find(x => x.id === it.id);
+            return `
+              <div class="success-item">
+                <div class="success-item__img" style="background-image:url('${p?.images[0] || ''}')"></div>
+                <div>
+                  <div class="success-item__name">${it.name}</div>
+                  <div class="success-item__meta">${it.color} · Size ${it.size} · Qty ${it.qty}</div>
+                </div>
+                <div class="success-item__price">${'$' + (it.price * it.qty).toLocaleString()}</div>
+              </div>`;
+          }).join('')}
+        </div>
+
+        <div class="success__totals">
+          <div class="summary-row"><span>Subtotal</span><span>${'$' + order.subtotal.toLocaleString()}</span></div>
+          <div class="summary-row"><span>Shipping</span><span>${order.shippingFee === 0 ? 'Free' : '$' + order.shippingFee}</span></div>
+          <div class="summary-row"><span>Tax</span><span>${'$' + order.tax.toLocaleString()}</span></div>
+          <div class="summary-row summary-row--total"><span>Total</span><span>${'$' + order.total.toLocaleString()}</span></div>
+        </div>
+
+        <div class="success__cta">
+          <a href="shop.html" class="btn btn--ink"><span>Continue Shopping</span></a>
+          <a href="index.html" class="btn"><span>Return Home</span></a>
+        </div>`;
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout — ÉLAN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/checkout.css" />
+</head>
+<body class="theme-light">
+
+  <!-- Minimal checkout nav -->
+  <nav class="nav-checkout">
+    <a href="index.html" class="nav-checkout__brand">ÉLAN</a>
+    <div class="nav-checkout__steps">
+      <span class="nav-checkout__step is-active"><i>01</i> Information</span>
+      <span class="nav-checkout__step is-active"><i>02</i> Shipping</span>
+      <span class="nav-checkout__step is-active"><i>03</i> Payment</span>
+    </div>
+    <a href="cart.html" class="nav-checkout__back">← Back to Bag</a>
+  </nav>
+
+  <main class="checkout">
+    <div class="checkout__col checkout__col--form">
+      <form id="checkoutForm" class="checkout-form" novalidate>
+
+        <section class="checkout-section">
+          <h2>Contact</h2>
+          <div class="field-grid">
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required placeholder="you@example.com" autocomplete="email" />
+            </div>
+            <label class="checkbox">
+              <input type="checkbox" id="news" />
+              <span>Email me with news and offers</span>
+            </label>
+          </div>
+        </section>
+
+        <section class="checkout-section">
+          <h2>Delivery</h2>
+          <div class="field-grid">
+            <div class="field-grid field-grid--2">
+              <div class="field">
+                <label for="firstName">First name</label>
+                <input type="text" id="firstName" name="firstName" required autocomplete="given-name" />
+              </div>
+              <div class="field">
+                <label for="lastName">Last name</label>
+                <input type="text" id="lastName" name="lastName" required autocomplete="family-name" />
+              </div>
+            </div>
+            <div class="field">
+              <label for="address">Address</label>
+              <input type="text" id="address" name="address" required autocomplete="street-address" placeholder="14 Rue Étienne-Marcel" />
+            </div>
+            <div class="field">
+              <label for="apt">Apartment, suite, etc. (optional)</label>
+              <input type="text" id="apt" name="apt" autocomplete="address-line2" />
+            </div>
+            <div class="field-grid field-grid--3">
+              <div class="field">
+                <label for="city">City</label>
+                <input type="text" id="city" name="city" required autocomplete="address-level2" />
+              </div>
+              <div class="field">
+                <label for="zip">Postal code</label>
+                <input type="text" id="zip" name="zip" required autocomplete="postal-code" />
+              </div>
+              <div class="field">
+                <label for="country">Country</label>
+                <select id="country" name="country" required autocomplete="country">
+                  <option>France</option>
+                  <option>United Kingdom</option>
+                  <option>United States</option>
+                  <option>Italy</option>
+                  <option>Germany</option>
+                  <option>Spain</option>
+                  <option>Japan</option>
+                  <option>Switzerland</option>
+                  <option>Netherlands</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel" />
+            </div>
+          </div>
+        </section>
+
+        <section class="checkout-section">
+          <h2>Shipping Method</h2>
+          <div class="ship-options">
+            <label class="ship-option">
+              <input type="radio" name="ship" value="standard" checked />
+              <div class="ship-option__body">
+                <span class="ship-option__name">Standard</span>
+                <span class="ship-option__sub">5–7 business days · Tracked</span>
+              </div>
+              <span class="ship-option__price">Free</span>
+            </label>
+            <label class="ship-option">
+              <input type="radio" name="ship" value="express" />
+              <div class="ship-option__body">
+                <span class="ship-option__name">Express</span>
+                <span class="ship-option__sub">2–3 business days · Signed</span>
+              </div>
+              <span class="ship-option__price">$24</span>
+            </label>
+            <label class="ship-option">
+              <input type="radio" name="ship" value="atelier" />
+              <div class="ship-option__body">
+                <span class="ship-option__name">Atelier Pickup</span>
+                <span class="ship-option__sub">Paris, 14 Rue Étienne-Marcel · Ready in 24h</span>
+              </div>
+              <span class="ship-option__price">Free</span>
+            </label>
+          </div>
+        </section>
+
+        <section class="checkout-section">
+          <h2>Payment</h2>
+          <p class="checkout-sub">Secure transaction · 256-bit encryption</p>
+
+          <div class="pay-tabs">
+            <button type="button" class="pay-tab is-active" data-method="card">Card</button>
+            <button type="button" class="pay-tab" data-method="paypal">PayPal</button>
+            <button type="button" class="pay-tab" data-method="applepay">Apple Pay</button>
+            <button type="button" class="pay-tab" data-method="klarna">Klarna · 4 payments</button>
+          </div>
+
+          <div class="pay-card" id="payCard">
+            <div class="field">
+              <label for="cardNum">Card number</label>
+              <div class="card-input">
+                <input type="text" id="cardNum" name="cardNum" inputmode="numeric" placeholder="0000 0000 0000 0000" maxlength="19" autocomplete="cc-number" />
+                <span class="card-brand" id="cardBrand">▲</span>
+              </div>
+            </div>
+            <div class="field-grid field-grid--2">
+              <div class="field">
+                <label for="cardExp">Expiry</label>
+                <input type="text" id="cardExp" name="cardExp" inputmode="numeric" placeholder="MM / YY" maxlength="7" autocomplete="cc-exp" />
+              </div>
+              <div class="field">
+                <label for="cardCvc">CVC</label>
+                <input type="text" id="cardCvc" name="cardCvc" inputmode="numeric" placeholder="•••" maxlength="4" autocomplete="cc-csc" />
+              </div>
+            </div>
+            <div class="field">
+              <label for="cardName">Name on card</label>
+              <input type="text" id="cardName" name="cardName" autocomplete="cc-name" />
+            </div>
+            <label class="checkbox">
+              <input type="checkbox" checked />
+              <span>Billing address matches shipping</span>
+            </label>
+          </div>
+
+          <div class="pay-other" id="payOther" hidden>
+            <p>You'll be redirected to <span id="payOtherName">PayPal</span> to complete your purchase securely.</p>
+          </div>
+
+          <div class="pay-trust">
+            <span class="mono">SSL Secure</span>
+            <span class="mono">PCI DSS</span>
+            <span class="mono">3DS Verified</span>
+          </div>
+        </section>
+
+        <button type="submit" class="btn btn--ink btn--lg checkout-submit" id="placeOrder">
+          <span>Place Order</span>
+        </button>
+
+        <p class="checkout-fine">By placing your order you agree to our <a href="#">Terms</a> & <a href="#">Privacy Policy</a>.</p>
+      </form>
+    </div>
+
+    <aside class="checkout__col checkout__col--summary">
+      <div class="checkout-summary" id="checkoutSummary"></div>
+    </aside>
+  </main>
+
+  <!-- Processing overlay -->
+  <div class="processing" id="processing">
+    <div class="processing__logo">ÉLAN</div>
+    <div class="processing__spinner"></div>
+    <div class="processing__text">Processing your order…</div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/gh/darkroomengineering/lenis@1.0.27/bundled/lenis.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>

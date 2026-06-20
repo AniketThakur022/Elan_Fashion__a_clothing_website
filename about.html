@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atelier — ÉLAN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/home.css" />
+  <style>
+    .about-hero {
+      min-height: 80vh;
+      padding: 140px var(--gutter) 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: var(--max);
+      margin: 0 auto;
+      background: var(--ink);
+      color: var(--bone);
+    }
+    .about-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(64px, 11vw, 200px);
+      font-weight: 300;
+      letter-spacing: -0.025em;
+      line-height: 0.92;
+      max-width: 1100px;
+      font-variation-settings: 'opsz' 144, 'SOFT' 60;
+    }
+    .about-hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .about-hero__sub {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(20px, 1.8vw, 26px);
+      color: rgba(245, 241, 234, 0.65);
+      margin-top: 32px;
+      max-width: 640px;
+      font-weight: 300;
+    }
+
+    .about-pillars {
+      padding: clamp(80px, 12vh, 140px) var(--gutter);
+      background: var(--cream);
+      color: var(--ink);
+    }
+    .about-pillars__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 56px 32px;
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+    @media (max-width: 900px) { .about-pillars__grid { grid-template-columns: 1fr; } }
+    .about-pillar {
+      border-top: 1px solid var(--rule-dark);
+      padding-top: 28px;
+    }
+    .about-pillar__num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .about-pillar h3 {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
+    }
+    .about-pillar p { font-size: 16px; line-height: 1.6; color: var(--grey-2); }
+
+    .about-image {
+      height: 90vh;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    @media (max-width: 800px) {
+      .about-image { background-attachment: scroll; height: 60vh; }
+    }
+
+    .about-stats {
+      padding: clamp(80px, 12vh, 140px) var(--gutter);
+      background: var(--ink);
+      color: var(--bone);
+    }
+    .about-stats__inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      max-width: var(--max);
+      margin: 0 auto;
+      border-top: 1px solid var(--rule);
+      padding-top: 56px;
+    }
+    @media (max-width: 800px) { .about-stats__inner { grid-template-columns: 1fr 1fr; gap: 40px; } }
+    .about-stat__num {
+      font-family: var(--font-display);
+      font-size: clamp(56px, 7vw, 96px);
+      font-weight: 300;
+      color: var(--gold-soft);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .about-stat__label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(245, 241, 234, 0.65);
+    }
+
+    .about-team {
+      padding: clamp(80px, 12vh, 140px) var(--gutter);
+      background: var(--cream);
+      color: var(--ink);
+    }
+    .about-team__head {
+      max-width: var(--max);
+      margin: 0 auto 56px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: end;
+    }
+    @media (max-width: 800px) { .about-team__head { grid-template-columns: 1fr; } }
+    .about-team__head h2 {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+    }
+    .about-team__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+    @media (max-width: 800px) { .about-team__grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 500px) { .about-team__grid { grid-template-columns: 1fr; } }
+    .about-team__card .img {
+      aspect-ratio: 3/4;
+      background-size: cover;
+      background-position: center;
+      margin-bottom: 16px;
+      filter: grayscale(0.4);
+      transition: filter 0.6s;
+    }
+    .about-team__card:hover .img { filter: grayscale(0); }
+    .about-team__card h3 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 400;
+    }
+    .about-team__card p {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body class="theme-dark">
+
+  <nav class="nav is-solid">
+    <div class="nav__left">
+      <a href="shop.html">Shop</a>
+      <a href="shop.html?cat=Outerwear">Outerwear</a>
+      <a href="about.html">Atelier</a>
+    </div>
+    <a href="index.html" class="nav__brand">ÉLAN</a>
+    <div class="nav__right">
+      <a href="#">Search</a>
+      <a href="#">Account</a>
+      <a href="#" class="nav__cart" data-cart-open>Bag <span data-cart-count>0</span></a>
+    </div>
+  </nav>
+
+  <header class="about-hero">
+    <p class="eyebrow eyebrow--light reveal">The House</p>
+    <h1 class="reveal" style="margin-top: 24px;">A Paris atelier with a <em>quietly</em> defiant point of view.</h1>
+    <p class="about-hero__sub reveal">We've been making clothes for nine years. Long enough to have opinions; not long enough to be sentimental about them.</p>
+  </header>
+
+  <section class="about-pillars">
+    <div class="about-pillars__grid">
+      <div class="about-pillar reveal">
+        <div class="about-pillar__num">N°01 — Material</div>
+        <h3>Cloth above novelty.</h3>
+        <p>We work only with mills we've visited. If the material isn't honest, the design can't save it. Our wool comes from Biella, our silk from Como, our linen from Roubaix.</p>
+      </div>
+      <div class="about-pillar reveal">
+        <div class="about-pillar__num">N°02 — Cut</div>
+        <h3>Patterns drafted on bodies.</h3>
+        <p>Every pattern is fitted on at least nine different women before production. The clothes are designed to move, sit, breathe, and disappear into your day.</p>
+      </div>
+      <div class="about-pillar reveal">
+        <div class="about-pillar__num">N°03 — Time</div>
+        <h3>Slow is the only fast that lasts.</h3>
+        <p>We release two collections a year, both small. Stock is finite. When a piece is gone, it's gone — until we feel like making it again.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="about-image" style="background-image:url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=2000&h=1400&fit=crop&q=85')"></div>
+
+  <section class="about-stats">
+    <div class="about-stats__inner">
+      <div class="about-stat reveal">
+        <div class="about-stat__num">2017</div>
+        <div class="about-stat__label">House Founded · Paris</div>
+      </div>
+      <div class="about-stat reveal">
+        <div class="about-stat__num">14</div>
+        <div class="about-stat__label">Artisans In-House</div>
+      </div>
+      <div class="about-stat reveal">
+        <div class="about-stat__num">9</div>
+        <div class="about-stat__label">Mills Across Europe</div>
+      </div>
+      <div class="about-stat reveal">
+        <div class="about-stat__num">2×</div>
+        <div class="about-stat__label">Collections per Year</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-team">
+    <div class="about-team__head">
+      <div>
+        <p class="eyebrow reveal">The Atelier</p>
+        <h2 class="reveal">Hands behind the house.</h2>
+      </div>
+      <p class="reveal" style="color: var(--grey-2); max-width: 380px; line-height: 1.6;">A small team of pattern-makers, tailors, and designers. Every piece passes through their hands before it reaches yours.</p>
+    </div>
+    <div class="about-team__grid">
+      <div class="about-team__card reveal">
+        <div class="img" style="background-image:url('https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=900&h=1200&fit=crop&q=85')"></div>
+        <h3>Marie Dubois</h3>
+        <p>Founder · Creative Director</p>
+      </div>
+      <div class="about-team__card reveal">
+        <div class="img" style="background-image:url('https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=900&h=1200&fit=crop&q=85')"></div>
+        <h3>Inès Cartier</h3>
+        <p>Head of Pattern</p>
+      </div>
+      <div class="about-team__card reveal">
+        <div class="img" style="background-image:url('https://images.unsplash.com/photo-1551803091-e20673f15770?w=900&h=1200&fit=crop&q=85')"></div>
+        <h3>Camille Aubry</h3>
+        <p>Production Lead</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand">ÉLAN</div>
+        <p class="footer__tagline">A Paris-rooted, world-facing house. Modern womenswear, ritually made.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="shop.html?cat=Dresses">Dresses</a></li>
+          <li><a href="shop.html?cat=Outerwear">Outerwear</a></li>
+          <li><a href="shop.html?cat=Tailoring">Tailoring</a></li>
+          <li><a href="shop.html?cat=Knitwear">Knitwear</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>House</h4>
+        <ul>
+          <li><a href="about.html">Atelier</a></li>
+          <li><a href="#">Sustainability</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Care</h4>
+        <ul>
+          <li><a href="#">Shipping</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Sizing</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Newsletter</h4>
+        <form class="newsletter">
+          <input type="email" placeholder="your@email.com" />
+          <button type="submit">→</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© <span data-year>2026</span> ÉLAN Maison</span>
+      <span>Made in Paris · Sewn the world over</span>
+    </div>
+  </footer>
+
+  <div class="cart-overlay"></div>
+  <aside class="cart-drawer">
+    <div class="cart-drawer__head">
+      <span class="cart-drawer__title">Your Bag</span>
+      <button class="cart-drawer__close" data-cart-close aria-label="Close cart">×</button>
+    </div>
+    <div class="cart-drawer__body"></div>
+    <div class="cart-drawer__foot">
+      <div class="cart-drawer__total">
+        <span>Subtotal</span>
+        <span class="cart-drawer__total-amount">$0</span>
+      </div>
+      <a href="checkout.html" class="btn btn--ink"><span>Checkout</span></a>
+      <a href="cart.html" class="btn"><span>View Bag</span></a>
+    </div>
+  </aside>
+
+  <script src="https://cdn.jsdelivr.net/gh/darkroomengineering/lenis@1.0.27/bundled/lenis.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
