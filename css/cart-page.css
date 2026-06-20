@@ -1,0 +1,219 @@
+/* CART PAGE ============================================ */
+
+.cart-page {
+  padding: 140px var(--gutter) 120px;
+  max-width: var(--max);
+  margin: 0 auto;
+  min-height: 70vh;
+}
+
+.cart-page__head {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.cart-page__head h1 {
+  font-size: clamp(48px, 7vw, 110px);
+  letter-spacing: -0.025em;
+  margin-top: 12px;
+  font-weight: 300;
+  font-variation-settings: 'opsz' 144, 'SOFT' 60;
+}
+
+.cart-page__inner {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .cart-page__inner { grid-template-columns: 1fr; gap: 56px; }
+}
+
+.cart-list {
+  border-top: 1px solid var(--rule-dark);
+}
+
+.cart-row {
+  display: grid;
+  grid-template-columns: 140px 1fr auto;
+  gap: 24px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--rule-dark);
+  align-items: start;
+}
+
+@media (max-width: 600px) {
+  .cart-row { grid-template-columns: 100px 1fr; }
+  .cart-row__price-col { grid-column: 1 / -1; text-align: right; }
+}
+
+.cart-row__img {
+  aspect-ratio: 3/4;
+  background-size: cover;
+  background-position: center;
+  background-color: #ddd;
+}
+
+.cart-row__name {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2vw, 28px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+}
+
+.cart-row__cat {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--grey);
+  margin-bottom: 14px;
+}
+
+.cart-row__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--grey-2);
+  margin-bottom: 16px;
+}
+
+.cart-row__qty {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--rule-dark);
+}
+
+.cart-row__qty button {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: all 0.3s;
+}
+.cart-row__qty button:hover {
+  background: var(--ink);
+  color: var(--cream);
+}
+.cart-row__qty span {
+  width: 36px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.cart-row__remove {
+  margin-left: 16px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--grey);
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+  transition: color 0.3s;
+}
+
+.cart-row__remove:hover { color: var(--wine); }
+
+.cart-row__price {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+/* Summary */
+.cart-summary {
+  border: 1px solid var(--rule-dark);
+  padding: 32px;
+  position: sticky;
+  top: 110px;
+}
+
+@media (max-width: 900px) { .cart-summary { position: static; } }
+
+.cart-summary h2 {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 400;
+  margin-bottom: 24px;
+}
+
+.cart-summary__line {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  font-size: 14px;
+  border-bottom: 1px solid var(--rule-dark);
+}
+
+.cart-summary__line--total {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 400;
+  border-bottom: none;
+  border-top: 1px solid var(--ink);
+  margin-top: 12px;
+  padding-top: 18px;
+}
+
+.cart-summary .btn { width: 100%; margin-top: 24px; }
+
+.cart-summary__note {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--grey);
+  text-align: center;
+  margin-top: 18px;
+}
+
+.cart-empty {
+  padding: 80px var(--gutter);
+  text-align: center;
+  border: 1px solid var(--rule-dark);
+  grid-column: 1 / -1;
+}
+
+.cart-empty h2 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 300;
+  margin: 16px 0 24px;
+}
+
+.cart-empty .btn { margin-top: 16px; }
+
+.cart-promo {
+  display: flex;
+  margin-top: 18px;
+  border: 1px solid var(--rule-dark);
+}
+.cart-promo input {
+  flex: 1;
+  border: none;
+  padding: 12px 16px;
+  background: transparent;
+  font-size: 14px;
+  outline: none;
+  color: var(--ink);
+  border-radius: 0;
+}
+.cart-promo button {
+  padding: 0 20px;
+  background: var(--ink);
+  color: var(--cream);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: opacity 0.3s;
+}
+.cart-promo button:hover { opacity: 0.85; }
